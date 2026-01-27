@@ -30,7 +30,7 @@ else condition
      block of condiyion 
      '''
 
-age=int(input("enter the age "))
+'''age=int(input("enter the age "))
 
 if age<=10:
     print("you bus fare is waved")
@@ -40,7 +40,7 @@ elif age>10 and age<=25:
     else:
         print("you bus fare is 100")
 else:
-    print("your bus fare is 150")
+    print("your bus fare is 150")'''
 
 
 
