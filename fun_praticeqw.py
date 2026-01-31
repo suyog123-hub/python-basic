@@ -19,12 +19,7 @@
 #     print(b)
 # '''
 
-# '''n=int(input("enter the amount is usd"))
-# def currency(n):
-#     npr=n*148
-#     print(npr)
 
-# currency(n)'''
 
 '''# input the function if odd the output odd is even then output is even '''
 
