@@ -1,3 +1,5 @@
+#single line comment is the question and the multi line comment is the solution of that comment 
+
 #conditional statement---> making decision basen on variable 
 
 # if statement 
