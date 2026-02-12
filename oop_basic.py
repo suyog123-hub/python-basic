@@ -142,3 +142,23 @@
 
 
 
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return f"{self.name} makes a sound."
+
+class Dog(Animal):
+    def speak(self):               # Override parent method
+        return f"{self.name} barks."
+
+class Cat(Animal):
+    def speak(self):
+        return f"{self.name} meows."
+
+# Usage
+dog = Dog("Buddy")
+print(dog.speak())   # Buddy barks.
+cat = Cat("Kitty")
+print(cat.speak())   # Kitty meows.
