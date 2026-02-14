@@ -163,39 +163,52 @@ print(dog.speak())   # Buddy barks.
 cat = Cat("Kitty")
 print(cat.speak())   # Kitty meows.'''
 
-class BankAccount:
-    def __init__(self, owner, balance):
-        self.owner = owner                # public
-        self._balance = balance            # protected (convention)
-        self.__pin = "1234"                 # private (name mangling)
+# class BankAccount:
+#     def __init__(self, owner, balance):
+#         self.owner = owner                # public
+#         self._balance = balance            # protected (convention)
+#         self.__pin = "1234"                 # private (name mangling)
 
-    # Getter method for balance (controlled access)
-    def get_balance(self):
-        return self._balance
+#     # Getter method for balance (controlled access)
+#     def get_balance(self):
+#         return self._balance
 
-    # Method to deposit money (with validation)
-    def deposit(self, amount):
-        if amount > 0:
-            self._balance += amount
-            print(f"Deposited {amount}. New balance: {self._balance}")
-        else:
-            print("Invalid amount")
+#     # Method to deposit money (with validation)
+#     def deposit(self, amount):
+#         if amount > 0:
+#             self._balance += amount
+#             print(f"Deposited {amount}. New balance: {self._balance}")
+#         else:
+#             print("Invalid amount")
 
-    # Method to withdraw money (with validation)
-    def withdraw(self, amount):
-        if 0 < amount <= self._balance:
-            self._balance -= amount
-            print(f"Withdrew {amount}. New balance: {self._balance}")
-        else:
-            print("Insufficient funds or invalid amount")
+#     # Method to withdraw money (with validation)
+#     def withdraw(self, amount):
+#         if 0 < amount <= self._balance:
+#             self._balance -= amount
+#             print(f"Withdrew {amount}. New balance: {self._balance}")
+#         else:
+#             print("Insufficient funds or invalid amount")
 
-# Usage
-acc = BankAccount("Alice", 1000)
-print(acc.owner)               # Alice (public)
-print(acc.get_balance())        # 1000 (via getter)
-acc.deposit(500)                # Deposited 500. New balance: 1500
-acc.withdraw(200)               # Withdrew 200. New balance: 1300
+# # Usage
+# acc = BankAccount("Alice", 1000)
+# print(acc.owner)               # Alice (public)
+# print(acc.get_balance())        # 1000 (via getter)
+# acc.deposit(500)                # Deposited 500. New balance: 1500
+# acc.withdraw(200)               # Withdrew 200. New balance: 1300
 
-# Trying to access private members
-# print(acc.__pin)               # AttributeError: 'BankAccount' object has no attribute '__pin'
-print(acc._BankAccount__pin)     # "1234" (name mangling still allows access, but it's discouraged)
+# # Trying to access private members
+# # print(acc.__pin)               # AttributeError: 'BankAccount' object has no attribute '__pin'
+# print(acc._BankAccount__pin)     # "1234" (name mangling still allows access, but it's discouraged)
+
+
+import math
+
+num = 25
+sqrt_num = math.sqrt(num)
+print(f"The square root of {num} is {sqrt_num}")
+
+
+import random
+
+rand_num = random.randint(1, 100)
+print(f"Random number between 1 and 100: {rand_num}")
