@@ -212,3 +212,10 @@ import random
 
 rand_num = random.randint(1, 100)
 print(f"Random number between 1 and 100: {rand_num}")
+
+from datetime import datetime
+
+now = datetime.now()
+print(f"Current date and time: {now}")
+print(f"Today's date: {now.date()}")
+print(f"Current time: {now.time()}")
