@@ -267,7 +267,6 @@ def safe_transaction(connection, queries):
                 print(f"Rollback also failed: {rb_e}")
             return False
         else:
-            # All queries executed successfully
             try:
                 connection.commit()
             except CommitError as e:
@@ -277,10 +276,9 @@ def safe_transaction(connection, queries):
                 print("Transaction committed successfully.")
                 return True
         finally:
-            # This inner finally runs after the inner try/except/else
-            # We'll use a separate outer finally for closing
+
             pass
     finally:
-        # Always close the connection
+
         connection.close()
 
