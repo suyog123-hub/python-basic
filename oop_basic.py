@@ -201,7 +201,7 @@ print(cat.speak())   # Kitty meows.'''
 # print(acc._BankAccount__pin)     # "1234" (name mangling still allows access, but it's discouraged)
 
 
-import math
+'''import math
 
 num = 25
 sqrt_num = math.sqrt(num)
@@ -218,4 +218,69 @@ from datetime import datetime
 now = datetime.now()
 print(f"Current date and time: {now}")
 print(f"Today's date: {now.date()}")
-print(f"Current time: {now.time()}")
+print(f"Current time: {now.time()}")'''
+
+
+class ConnectionError(Exception): pass
+class QueryError(Exception): pass
+class CommitError(Exception): pass
+class RollbackError(Exception): pass
+
+class DatabaseConnection:
+    def connect(self):
+        print("Connecting...")
+        # Simulate success
+        # raise ConnectionError("Network unreachable")
+
+    def execute_query(self, query):
+        print(f"Executing: {query}")
+        # Simulate success
+        # raise QueryError(f"Syntax error in {query}")
+
+    def commit(self):
+        print("Committing...")
+        # raise CommitError("Commit failed")
+
+    def rollback(self):
+        print("Rolling back...")
+        # raise RollbackError("Rollback failed")
+
+    def close(self):
+        print("Closing connection.")
+
+def safe_transaction(connection, queries):
+    try:
+        connection.connect()
+    except ConnectionError as e:
+        print(f"Connection failed: {e}")
+        return False
+    else:
+        # Connection succeeded
+        try:
+            for q in queries:
+                connection.execute_query(q)
+        except QueryError as e:
+            print(f"Query failed: {e}")
+            try:
+                connection.rollback()
+            except RollbackError as rb_e:
+                print(f"Rollback also failed: {rb_e}")
+            return False
+        else:
+            # All queries executed successfully
+            try:
+                connection.commit()
+            except CommitError as e:
+                print(f"Commit failed: {e}")
+                return False
+            else:
+                print("Transaction committed successfully.")
+                return True
+        finally:
+            # This inner finally runs after the inner try/except/else
+            # We'll use a separate outer finally for closing
+            pass
+    finally:
+        # Always close the connection
+        connection.close()
+
