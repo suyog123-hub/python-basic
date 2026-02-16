@@ -221,64 +221,73 @@ print(f"Today's date: {now.date()}")
 print(f"Current time: {now.time()}")'''
 
 
-class ConnectionError(Exception): pass
-class QueryError(Exception): pass
-class CommitError(Exception): pass
-class RollbackError(Exception): pass
+# class ConnectionError(Exception): pass
+# class QueryError(Exception): pass
+# class CommitError(Exception): pass
+# class RollbackError(Exception): pass
 
-class DatabaseConnection:
-    def connect(self):
-        print("Connecting...")
-        # Simulate success
-        # raise ConnectionError("Network unreachable")
+# class DatabaseConnection:
+#     def connect(self):
+#         print("Connecting...")
+#         # Simulate success
+#         # raise ConnectionError("Network unreachable")
 
-    def execute_query(self, query):
-        print(f"Executing: {query}")
-        # Simulate success
-        # raise QueryError(f"Syntax error in {query}")
+#     def execute_query(self, query):
+#         print(f"Executing: {query}")
+#         # Simulate success
+#         # raise QueryError(f"Syntax error in {query}")
 
-    def commit(self):
-        print("Committing...")
-        # raise CommitError("Commit failed")
+#     def commit(self):
+#         print("Committing...")
+#         # raise CommitError("Commit failed")
 
-    def rollback(self):
-        print("Rolling back...")
-        # raise RollbackError("Rollback failed")
+#     def rollback(self):
+#         print("Rolling back...")
+#         # raise RollbackError("Rollback failed")
 
-    def close(self):
-        print("Closing connection.")
+#     def close(self):
+#         print("Closing connection.")
 
-def safe_transaction(connection, queries):
-    try:
-        connection.connect()
-    except ConnectionError as e:
-        print(f"Connection failed: {e}")
-        return False
-    else:
-        # Connection succeeded
-        try:
-            for q in queries:
-                connection.execute_query(q)
-        except QueryError as e:
-            print(f"Query failed: {e}")
-            try:
-                connection.rollback()
-            except RollbackError as rb_e:
-                print(f"Rollback also failed: {rb_e}")
-            return False
-        else:
-            try:
-                connection.commit()
-            except CommitError as e:
-                print(f"Commit failed: {e}")
-                return False
-            else:
-                print("Transaction committed successfully.")
-                return True
-        finally:
+# def safe_transaction(connection, queries):
+#     try:
+#         connection.connect()
+#     except ConnectionError as e:
+#         print(f"Connection failed: {e}")
+#         return False
+#     else:
+#         # Connection succeeded
+#         try:
+#             for q in queries:
+#                 connection.execute_query(q)
+#         except QueryError as e:
+#             print(f"Query failed: {e}")
+#             try:
+#                 connection.rollback()
+#             except RollbackError as rb_e:
+#                 print(f"Rollback also failed: {rb_e}")
+#             return False
+#         else:
+#             try:
+#                 connection.commit()
+#             except CommitError as e:
+#                 print(f"Commit failed: {e}")
+#                 return False
+#             else:
+#                 print("Transaction committed successfully.")
+#                 return True
+#         finally:
 
-            pass
-    finally:
+#             pass
+#     finally:
 
-        connection.close()
+#         connection.close()
+import json
+json_string = '{"products": [{"id": 1, "name": "Laptop"}, {"id": 2, "name": "Mouse"}]}'
+data = json.loads(json_string)
 
+# Get the list of products
+products = data["products"]
+
+# Loop through each product
+for product in products:
+    print(product["id"], product["name"])
